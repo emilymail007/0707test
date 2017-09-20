@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="seleniumDemo2:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="seleniumDemo1.war">
+      <element id="artifact" artifact-name="seleniumDemo2:war exploded" />
+    </root>
+  </artifact>
+</component>

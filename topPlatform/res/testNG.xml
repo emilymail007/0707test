@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<suite name="suit" parallel="false">
+    <test name="SeleniumTest">
+        <!--<packages>-->
+        <!--<package name="com.testproj.Demo"/>-->
+        <!--</packages>-->
+        <classes>
+            <class name="TestFor1"></class>
+            <class name="SeleniumChromeTest" />
+        </classes>
+    </test>
+    <test name="LoginTest">
+        <classes>
+            <class name="LoginTest"></class>
+        </classes>
+    </test>
+
+</suite>
