@@ -128,7 +128,7 @@ public class login2Test {
         System.out.println("当前句柄"+driver.getWindowHandle());
 
     }
-    @Test(priority = 12,testName = "登录成功",dependsOnGroups = {"login2Test.loginSuccess"})
+    @Test(priority = 12,testName = "登录成功",groups = {"login"})
     public void loginSuccess() throws InterruptedException {
         //刷新页面
         driver.navigate().refresh();

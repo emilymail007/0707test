@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="E:/JetBrains/Workspace/seleniumTest1">
+        <classes>
+            <class name="testng.login2Test">
+                <methods>
+                    <include name="clickButton"/>
+                    <include name="justClick"/>
+                    <include name="forgotPasswordTest"/>
+                    <include name="passwordIsNULL"/>
+                </methods>
+            </class>
+            <class name="testng.loginTest">
+                <methods>
+                    <include name="userNotExit"/>
+                    <include name="userNameNUll"/>
+                </methods>
+            </class>
+            <class name="testng.createRedPackageWishTest">
+                <methods>
+                    <include name="test1"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
