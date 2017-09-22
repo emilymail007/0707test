@@ -29,6 +29,8 @@ public class RedPackageWish {
     //列表首行删除按钮
     @FindBy(xpath = "//table/tbody/tr[1]/td[6]/a[2]")
     public static WebElement firstLineDelete;
+    @FindBy(xpath = "//table/tbody/tr[1]/td[2]")
+    public static WebElement firstLineNickName;
 
     public boolean ListNotNull(){
         List<WebElement> listData = list.findElements(By.tagName("tr"));

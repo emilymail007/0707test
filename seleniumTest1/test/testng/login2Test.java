@@ -15,6 +15,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import static java.awt.SystemColor.window;
+
 
 /**
  * Created by user on 2017/9/15.
@@ -25,7 +27,7 @@ public class login2Test {
     LoginAction login = null;
 
 
-    @BeforeClass
+    @BeforeTest
     public void openURL(){
         driver = new setupBrowser().setupFirefox();
         driver.get("https://top-test.sao.so/#/login");
@@ -47,15 +49,17 @@ public class login2Test {
     }
     @Test(priority= 2,testName = "点击输入框，移开后报错")
     public void justClick(){
-        System.out.println("**********点击用户名，在点击密码，用户名输入框下报错**********");
+        System.out.println("**********依次点击各输入框**********");
+        System.out.println("刷新前句柄"+driver.getWindowHandle());
         //刷新页面
-        common.refresh(driver);
+//        common.refresh(driver);
+        driver.navigate().refresh();
+
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("*******点击用户名->点击密码*******");
         loginPage.username(driver).click();
 
         loginPage.password(driver).click();
@@ -65,7 +69,7 @@ public class login2Test {
             e.printStackTrace();
         }
         Assert.assertTrue(driver.getPageSource().contains("用户名不能为空"));
-        System.out.println("*******在点击验证码框*******");
+
         loginPage.code(driver).click();
         try {
             Thread.sleep(500);
@@ -73,7 +77,7 @@ public class login2Test {
             e.printStackTrace();
         }
         Assert.assertTrue(driver.getPageSource().contains("请填写密码"));
-        System.out.println("***********在点击用户名输入框************");
+
         loginPage.username(driver).click();
         try {
             Thread.sleep(500);
@@ -87,7 +91,7 @@ public class login2Test {
 
     @Test(priority = 3,testName = "忘记密码")
     public void forgotPasswordTest(){
-        System.out.println("*******忘记密码*********");
+        System.out.println("*******点击忘记密码*********");
         LoginPage.forgotPassword(driver).click();
         try {
             Thread.sleep(2000);
@@ -105,13 +109,13 @@ public class login2Test {
     @Test(priority=11,testName = "密码为空，其他正确")
     public void passwordIsNULL(){
         System.out.println("********密码为空，其他正确，报错：请输入密码**********");
-//        //刷新页面
-//        common.refresh(driver);
-//        try {
-//            Thread.sleep(3000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+
+        driver.navigate().refresh();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         loginPage.username(driver).clear();
         loginPage.username(driver).sendKeys("123@qq.com");
         loginPage.password(driver).clear();
@@ -130,8 +134,10 @@ public class login2Test {
     }
     @Test(priority = 12,testName = "登录成功",groups = {"login"})
     public void loginSuccess() throws InterruptedException {
+        System.out.println("**********登录成功************");
         //刷新页面
         driver.navigate().refresh();
+        Thread.sleep(1000);
         loginPage.username(driver).clear();
         loginPage.username(driver).sendKeys("123@qq.com");
         try {
@@ -144,6 +150,8 @@ public class login2Test {
         loginPage.code(driver).clear();
         loginPage.code(driver).sendKeys("1234");
         loginPage.loginButton(driver).click();
+
+
 
 
         try {

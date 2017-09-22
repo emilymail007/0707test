@@ -10,7 +10,7 @@ public class LoginAction {
     public LoginAction(WebDriver driver) {
         this.driver = driver;
     }
-    public void Login(String username, String password, String code) {
+    public void Login(String username,String password,String code) {
         LoginPage.username(driver).clear();
         LoginPage.username(driver).sendKeys(username);
         LoginPage.password(driver).clear();
