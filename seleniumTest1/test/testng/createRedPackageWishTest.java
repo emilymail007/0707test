@@ -1,44 +1,46 @@
 package testng;
 
+import com.test.page.CreateRedPackageWish;
 import com.test.page.LoginPage;
-import com.test.page.createRedPackageWish;
+import com.test.page.RedPackageWish;
+import com.test.pageAction.Common;
 import com.test.pageAction.LoginAction;
-import com.test.pageAction.setupBrowser;
+import com.test.pageAction.RedPackageAction;
+import com.test.pageAction.SetupBrowser;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 /**
- * Created by user on 2017/9/20.
+ * Created by user on 2017/9/25.
  */
-public class createRedPackageWishTest {
+public class CreateRedPackageWishTest {
     private WebDriver driver;
     LoginPage loginPage = new LoginPage();
-    LoginAction login = null;
+    RedPackageAction redPackage = null;
+    public static RedPackageWish redPackageWish;
+    Actions actions;
     @BeforeClass
-    public void step1(){
-        driver = new setupBrowser().setupFirefox();
+    public void step01(){
+        driver = new SetupBrowser().setupFirefox();
         driver.get("https://top-test.sao.so/#/login");
-        login = new LoginAction(driver);
-        login.Login("123@qq.com","123456","1111");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        Assert.assertTrue(driver.getPageSource().contains("你好"));
-        driver.get("https://top-test.sao.so/#/activityservicered_packet/Wishingadd");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Common.login(driver);
+        Common.openPrizes(driver);
+        Assert.assertTrue(driver.getPageSource().contains("红包祝福语管理"));
+        //点击新建按钮
+        redPackageWish.create.click();
 
     }
     @Test(priority = 1,testName = "点击确定按钮")
     public void onlyClick(){
-        createRedPackageWish.saveButton(driver).click();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        CreateRedPackageWish.saveButton(driver).click();
         Assert.assertTrue(driver.getPageSource().contains("商户名称不能为空"));
         Assert.assertTrue(driver.getPageSource().contains("祝福语不能为空"));
         Assert.assertTrue(driver.getPageSource().contains("活动名称不能为空"));
@@ -52,20 +54,41 @@ public class createRedPackageWishTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        createRedPackageWish.nickName(driver).clear();
-        createRedPackageWish.wish(driver).clear();
-        createRedPackageWish.wish(driver).sendKeys("祝福语");
-        createRedPackageWish.activityName(driver).clear();
-        createRedPackageWish.activityName(driver).sendKeys("活动名称");
-        createRedPackageWish.remarks(driver).clear();
-        createRedPackageWish.remarks(driver).sendKeys("备注");
-        createRedPackageWish.saveButton(driver).click();
+        CreateRedPackageWish.nickName(driver).clear();
+        CreateRedPackageWish.wish(driver).clear();
+        CreateRedPackageWish.wish(driver).sendKeys("祝福语");
+        CreateRedPackageWish.activityName(driver).clear();
+        CreateRedPackageWish.activityName(driver).sendKeys("活动名称");
+        CreateRedPackageWish.remarks(driver).clear();
+        CreateRedPackageWish.remarks(driver).sendKeys("备注");
+        CreateRedPackageWish.saveButton(driver).click();
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
-
+    @Test(priority = 3,testName = "祝福语为空")
+    public void wishNull(){
+        driver.navigate().refresh();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        CreateRedPackageWish.nickName(driver).clear();
+        CreateRedPackageWish.nickName(driver).sendKeys("商户名称");
+        CreateRedPackageWish.wish(driver).clear();
+        CreateRedPackageWish.activityName(driver).clear();
+        CreateRedPackageWish.activityName(driver).sendKeys("活动名称");
+        CreateRedPackageWish.remarks(driver).clear();
+        CreateRedPackageWish.remarks(driver).sendKeys("备注");
+        CreateRedPackageWish.saveButton(driver).click();
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

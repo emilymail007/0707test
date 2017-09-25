@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 /**
  * Created by user on 2017/9/20.
  */
-public class createRedPackageWish {
+public class CreateRedPackageWish {
     private static WebElement element;
     //商户名称
     public static WebElement nickName(WebDriver driver){

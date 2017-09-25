@@ -2,26 +2,18 @@ package testng;
 
 import com.test.page.LoginPage;
 import com.test.pageAction.LoginAction;
-import com.test.pageAction.common;
-import com.test.pageAction.setupBrowser;
-import org.openqa.selenium.By;
+import com.test.pageAction.Common;
+import com.test.pageAction.SetupBrowser;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
-import static java.awt.SystemColor.window;
 
 
 /**
  * Created by user on 2017/9/15.
  */
-public class login2Test {
+public class LoginTest {
     WebDriver driver = null;
     LoginPage loginPage = new LoginPage();
     LoginAction login = null;
@@ -29,7 +21,7 @@ public class login2Test {
 
     @BeforeTest
     public void openURL(){
-        driver = new setupBrowser().setupFirefox();
+        driver = new SetupBrowser().setupFirefox();
         driver.get("https://top-test.sao.so/#/login");
         login = new LoginAction(driver);
     }

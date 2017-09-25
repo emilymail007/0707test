@@ -18,7 +18,7 @@ public class RedPackageWish {
 //        return element;
 //    }
     //新建按钮
-    @FindBy(xpath = "//div[@class='wishings-manage']/button" )
+    @FindBy(xpath = "//div[@class='wishings-manage']/button")
     public static WebElement create;
     //列表
     @FindBy(xpath = "//table/tbody")
@@ -31,12 +31,20 @@ public class RedPackageWish {
     public static WebElement firstLineDelete;
     @FindBy(xpath = "//table/tbody/tr[1]/td[2]")
     public static WebElement firstLineNickName;
+    @FindBy(xpath = "//ul/li[1]/div/div[2]/ul/li[2]/div/div[2]/ul/li[2]/div")
+    public static WebElement redPackageMenu;
+    //营销活动菜单
+    @FindBy(xpath = "//ul/li[1]/div/div[1]/span")
+    public static WebElement MarketingCampaigns;
+    //企业奖品菜单
+    @FindBy(xpath = "//ul/li[1]/div/div[2]/ul/li[2]/div/div[1]/div/span")
+    public static WebElement prizes;
 
-    public boolean ListNotNull(){
+    public boolean ListNotNull() {
         List<WebElement> listData = list.findElements(By.tagName("tr"));
-        for (WebElement e:listData){
-            System.out.println("祝福语ID："+e.findElement(By.tagName("td")).getText());
+        for (WebElement e : listData) {
+            System.out.println("祝福语ID：" + e.findElement(By.tagName("td")).getText());
         }
-        return listData.size()>0;
+        return listData.size() > 0;
     }
 }

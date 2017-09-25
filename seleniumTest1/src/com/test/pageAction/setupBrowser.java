@@ -11,7 +11,7 @@ import java.io.File;
 /**
  * Created by user on 2017/9/8.
  */
-public class setupBrowser {
+public class SetupBrowser {
     public WebDriver setupChrome(){
         System.setProperty("webdriver.chrome.driver","D:\\tools\\browers-drivers\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
